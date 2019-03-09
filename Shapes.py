@@ -1,23 +1,30 @@
 from abc import ABC, abstractmethod
+import math
 
 class Shapes(ABC):
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, sides, size):
+        self.size = size
+        self.sides = sides
+        print(self.sides)
         super().__init__()
 
+    def parameter(self):
+        return self.sides * self.size
+        
         @abstractmethod
         def area(self):
             pass
 
 class Square(Shapes):
     def area(self):
-        return self.value * self.value
+        return self.size * self.size
 
 class Triangle(Shapes):
     def area(self):
-        return self.value * self.value * 0.43
+        return pow(self.size,2) * math.sqrt(3) / 4
 
-x = Square(10)
+x = Square(4,10)
 print('Square area ',x.area())
-y = Triangle(3)
-print('Triangle area ',y.area())
+print('Square parameter ',x.parameter())
+y = Triangle(3,3)
+print('Triangle area ',y.area(),' and its parameter',x.parameter())
